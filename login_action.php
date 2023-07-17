@@ -5,8 +5,9 @@ $password = filter_input(INPUT_POST, 'password');
 
 if($email && $password){
 
-    $sql = $pdo->prepare("SELECT * FROM wifi_users WHERE email =:email");
+    $sql = $pdo->prepare("SELECT * FROM wifi_users WHERE email =:email && password =:password");
     $sql->bindValue(':email', $email);
+    $sql->bindValue(':password', $password);
     $sql->execute();
 
     if($sql->rowCount() > 0){
